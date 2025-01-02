@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SparklesBackground } from "@/components/ui/SparklesBackground";
 
 export const metadata: Metadata = {
   title: "techMilionerzy",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SparklesBackground>{children}</SparklesBackground>
+      </body>
     </html>
   );
 }
