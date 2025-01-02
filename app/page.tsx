@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { SparklesCore } from "@/components/ui/sparkles";
 import { OutlinedButton } from "@/components/Buttons";
 import { useRouter } from "next/navigation";
 import {
@@ -13,7 +12,6 @@ import {
   IconBrandTypescript,
 } from "@tabler/icons-react";
 import { BlurredCard } from "@/components/ui/Card";
-import { SparklesBackground } from "@/components/ui/SparklesBackground";
 
 export default function HomePage() {
   const router = useRouter();
