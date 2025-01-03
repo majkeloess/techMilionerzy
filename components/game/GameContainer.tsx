@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import QuestionGame from "@/components/game/Question";
 import AnswersList from "@/components/game/AnswersList";
-import PrizeLadder from "@/components/game/PrizeLadder";
 import type { Question } from "@/types";
 import { isUserAnswerCorrect, shuffleAnswers } from "@/lib/utils/questions";
+import { WinningScreen, LosingScreen } from "./Screens";
 
 const PRIZE_AMOUNTS = [
   500, 1000, 2000, 5000, 10000, 20000, 40000, 75000, 125000, 250000, 500000,
@@ -32,8 +32,6 @@ export default function GameContainer({
     const currentQuestion = questions[currentQuestionIndex];
     const selectedAnswer = shuffledAnswers[selectedIndex];
 
-    console.log(selectedAnswer);
-
     const isCorrect = isUserAnswerCorrect(
       selectedAnswer,
       currentQuestion.odp_poprawna
@@ -52,9 +50,15 @@ export default function GameContainer({
     }
   };
 
+  const handlePlayAgain = () => {
+    setGameStatus("playing");
+    setCurrentQuestionIndex(0);
+    setEarnedMoney(0);
+  };
+
   return (
-    <div className="flex h-full gap-4">
-      <div className="flex-1">
+    <section className="flex h-full gap-4">
+      <div className="flex flex-col">
         {gameStatus === "playing" && (
           <>
             <QuestionGame
@@ -65,22 +69,18 @@ export default function GameContainer({
           </>
         )}
         {gameStatus === "won" && (
-          <div className="text-white text-center">
-            <h2>Gratulacje! Wygrałeś {earnedMoney} zł!</h2>
-          </div>
+          <WinningScreen
+            earnedMoney={earnedMoney}
+            handlePlayAgain={handlePlayAgain}
+          />
         )}
         {gameStatus === "lost" && (
-          <div className="text-white text-center">
-            <h2>
-              Niestety, to nieprawidłowa odpowiedź. Wygrałeś {earnedMoney} zł!
-            </h2>
-          </div>
+          <LosingScreen
+            earnedMoney={earnedMoney}
+            handlePlayAgain={handlePlayAgain}
+          />
         )}
       </div>
-      {/* <PrizeLadder
-        amounts={PRIZE_AMOUNTS}
-        currentLevel={currentQuestionIndex}
-      /> */}
-    </div>
+    </section>
   );
 }

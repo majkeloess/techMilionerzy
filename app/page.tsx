@@ -23,7 +23,7 @@ export default function HomePage() {
       <p className="text-center text-white text-lg mt-4">
         Twoja wiedza technologiczna jest warta milion? Udowodnij to!
       </p>
-      <div className="flex flex-row gap-2 justify-center mt-4">
+      <section className="flex flex-row gap-2 justify-center mt-4">
         <IconBrandHtml5 size={32} color="#FFFFFF" />
         <IconBrandCss3 size={32} color="#FFFFFF" />
         <IconBrandJavascript size={32} color="#FFFFFF" />
@@ -31,8 +31,8 @@ export default function HomePage() {
         <IconBrandNodejs size={32} color="#FFFFFF" />
         <IconBrandReact size={32} color="#FFFFFF" />
         <IconBrandNextjs size={32} color="#FFFFFF" />
-      </div>
-      <div className="flex flex-row gap-4 mt-4 z-20 justify-center">
+      </section>
+      <section className="flex flex-row gap-4 mt-4 z-20 justify-center">
         <OutlinedButton
           text="Rozpocznij grę"
           onClick={() => {
@@ -45,7 +45,7 @@ export default function HomePage() {
             router.push("/zasady");
           }}
         />
-      </div>
+      </section>
     </BlurredCard>
   );
 }
