@@ -1,3 +1,9 @@
+import { BlurredCard } from "@/components/ui/Card";
+
 export default function RulesPage() {
-  return <div className="h-[100vh] w-full bg-slate-800">Zasady</div>;
+  return (
+    <BlurredCard>
+      <h1>Zasady</h1>
+    </BlurredCard>
+  );
 }

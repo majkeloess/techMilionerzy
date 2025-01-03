@@ -15,8 +15,16 @@ export const shuffleAnswers = (question: Question) => {
   return shuffle(answers);
 };
 
-export const shuffleQuestions = (questionArray: Question[]) => {
-  return shuffle(questionArray);
+export const shuffleQuestionsForGame = (questionArray: Question[]) => {
+  const easyQuestions = questionArray.filter((question) => question.poziom === "easy");
+  const mediumQuestions = questionArray.filter((question) => question.poziom === "medium");
+  const hardQuestions = questionArray.filter((question) => question.poziom === "hard");
+
+  const shuffledEasyQuestions = shuffle(easyQuestions);
+  const shuffledMediumQuestions = shuffle(mediumQuestions);
+  const shuffledHardQuestions = shuffle(hardQuestions);
+
+  return [...shuffledEasyQuestions, ...shuffledMediumQuestions, ...shuffledHardQuestions];
 };
 
 export const isUserAnswerCorrect = (

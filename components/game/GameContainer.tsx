@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuestionGame from "@/components/game/Question";
 import AnswersList from "@/components/game/AnswersList";
 import PrizeLadder from "@/components/game/PrizeLadder";
 import type { Question } from "@/types";
+import { isUserAnswerCorrect, shuffleAnswers } from "@/lib/utils/questions";
 
 const PRIZE_AMOUNTS = [
   500, 1000, 2000, 5000, 10000, 20000, 40000, 75000, 125000, 250000, 500000,
@@ -20,17 +21,23 @@ export default function GameContainer({
     "playing"
   );
   const [earnedMoney, setEarnedMoney] = useState(0);
+  const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
+
+  useEffect(() => {
+    const currentQuestion = questions[currentQuestionIndex];
+    setShuffledAnswers(shuffleAnswers(currentQuestion));
+  }, [currentQuestionIndex, questions]);
 
   const handleAnswer = (selectedIndex: number) => {
     const currentQuestion = questions[currentQuestionIndex];
-    const selectedAnswer = [
-      currentQuestion.odp_a,
-      currentQuestion.odp_b,
-      currentQuestion.odp_c,
-      currentQuestion.odp_d,
-    ][selectedIndex];
+    const selectedAnswer = shuffledAnswers[selectedIndex];
 
-    const isCorrect = selectedAnswer === currentQuestion.odp_poprawna;
+    console.log(selectedAnswer);
+
+    const isCorrect = isUserAnswerCorrect(
+      selectedAnswer,
+      currentQuestion.odp_poprawna
+    );
 
     if (isCorrect) {
       if (currentQuestionIndex === questions.length - 1) {
@@ -51,18 +58,10 @@ export default function GameContainer({
         {gameStatus === "playing" && (
           <>
             <QuestionGame
-              question={questions[currentQuestionIndex].pytanie}
+              question={questions[currentQuestionIndex]}
               questionNumber={currentQuestionIndex + 1}
             />
-            <AnswersList
-              answers={[
-                questions[currentQuestionIndex].odp_a,
-                questions[currentQuestionIndex].odp_b,
-                questions[currentQuestionIndex].odp_c,
-                questions[currentQuestionIndex].odp_d,
-              ]}
-              onSelect={handleAnswer}
-            />
+            <AnswersList answers={shuffledAnswers} onSelect={handleAnswer} />
           </>
         )}
         {gameStatus === "won" && (
@@ -78,10 +77,10 @@ export default function GameContainer({
           </div>
         )}
       </div>
-      <PrizeLadder
+      {/* <PrizeLadder
         amounts={PRIZE_AMOUNTS}
         currentLevel={currentQuestionIndex}
-      />
+      /> */}
     </div>
   );
 }

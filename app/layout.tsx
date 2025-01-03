@@ -15,7 +15,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SparklesBackground>{children}</SparklesBackground>
+        <SparklesBackground>
+          {children}
+          <footer className="text-white text-center absolute bottom-4 w-full">
+            <p>
+              &copy;{new Date().getFullYear()} techMilionerzy by{" "}
+              <a href="https://github.com/majkeloess" target="_blank">
+                majkeloess
+              </a>
+            </p>
+          </footer>
+        </SparklesBackground>
       </body>
     </html>
   );
