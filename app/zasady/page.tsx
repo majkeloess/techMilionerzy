@@ -17,57 +17,32 @@ export default function RulesPage() {
           </button>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-2">
           <div>
             <p className="text-base">
               <strong>techMilionerzy</strong> to gra edukacyjna, która jest
               klonem znanej gry Milionerzy. Gracz odpowiada na 12 pytań
               dotyczących technologii informatycznych, które są losowane z
               naszej bazy danych. Po odpowiedzi na wszystkie pytania poprawnie,
-              gracz otrzymuje nagrodę 1 000 000 zł.
+              gracz otrzymuje nagrodę 1 000 000 zł. Gracz odpowiada na serię
+              pytań o rosnącym poziomie trudności. Każde pytanie ma cztery
+              możliwe odpowiedzi, z których tylko jedna jest poprawna. W grze
+              obowiązuje progresywny system nagród - im dalej zajdziesz, tym
+              większa nagroda.
             </p>
           </div>
 
-          <div>
-            <h2 className="text-xl font-semibold mt-1">Struktura gry</h2>
-            <p className="text-base">
-              Gracz odpowiada na serię pytań o rosnącym poziomie trudności.
-              Każde pytanie ma cztery możliwe odpowiedzi, z których tylko jedna
-              jest poprawna. W grze obowiązuje progresywny system nagród - im
-              dalej zajdziesz, tym większa nagroda.
-            </p>
-          </div>
+          <p className="text-base mt-2">
+            Gracz nie otrzymuje żadnej nagrody, jeśli odpowie na pytanie
+            niepoprawnie. Gracz może zrezygnować z odpowiedzi przed kolejnym
+            pytaniem i odebrac swoją nagrodę.
+          </p>
 
-          <div>
-            <h2 className="text-xl font-semibold mt-1">Nagrody</h2>
-            <p className="text-base">
-              Gracz nie otrzymuje żadnej nagrody, jeśli odpowie na pytanie
-              niepoprawnie. Gracz może zrezygnować z odpowiedzi przed kolejnym
-              pytaniem i odebrac swoją nagrodę.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-semibold mt-1">Koła ratunkowe</h2>
-            <p className="text-base">
-              Gracz ma do dyspozycji koła ratunkowe, które pomagają w odpowiedzi
-              na pytania.
-            </p>
-            <ul className="list-disc pl-4">
-              <li>
-                <strong>50/50</strong> - Gracz ma 50% szans na odpowiedź
-                poprawną.
-              </li>
-              <li>
-                <strong>Pomoc eksperta</strong> - ekspert pomaga w odpowiedzi na
-                pytanie.
-              </li>
-              <li>
-                <strong>Pytanie do publiczności</strong> - publiczność pomaga
-                odpowiadać na pytanie.
-              </li>
-            </ul>
-          </div>
+          <p className="text-base mt-2">
+            Gracz ma do dyspozycji dwa koła ratunkowe, które pomagają w
+            odpowiedzi na pytania. Koło ratunkowe nazywa się 'jedna druga' i
+            pozwala na zmniejszenie liczby odpowiedzi na pytania do połowy.
+          </p>
         </div>
       </section>
     </BlurredCard>
