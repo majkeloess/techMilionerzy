@@ -1,11 +1,13 @@
-import { AnswerState } from "@/types";
+import type { AnswerState } from "@/types";
+import { isUserAnswerCorrect } from "@/lib/utils/questions";
 
 interface AnswersListProps {
   answers: string[];
   onSelect: (index: number) => void;
   selectedIndex: number | null;
-  answerState: "default" | "selected" | "correct" | "wrong";
+  answerState: AnswerState;
   removedAnswers: number[];
+  correctAnswer: string;
 }
 
 export default function AnswersList({
@@ -14,10 +16,20 @@ export default function AnswersList({
   selectedIndex,
   answerState,
   removedAnswers,
+  correctAnswer,
 }: AnswersListProps) {
   const getAnswerClassName = (index: number) => {
     if (removedAnswers.includes(index)) {
       return "invisible";
+    }
+
+    if (answerState === "wrong-with-correct") {
+      if (isUserAnswerCorrect(answers[index], correctAnswer)) {
+        return "bg-green-500";
+      }
+      if (index === selectedIndex) {
+        return "bg-red-500";
+      }
     }
 
     if (index !== selectedIndex) return "bg-transparent";

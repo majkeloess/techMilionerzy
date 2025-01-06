@@ -23,7 +23,7 @@ export default function GameContainer({
     null
   );
   const [answerState, setAnswerState] = useState<
-    "default" | "selected" | "correct" | "wrong"
+    "default" | "selected" | "correct" | "wrong" | "wrong-with-correct"
   >("default");
   const [fiftyFiftyCount, setFiftyFiftyCount] = useState(2);
   const [removedAnswers, setRemovedAnswers] = useState<number[]>([]);
@@ -35,7 +35,8 @@ export default function GameContainer({
   }, [currentQuestionIndex, questions]);
 
   const handleAnswer = async (selectedIndex: number) => {
-    setSelectedAnswerIndex(selectedIndex);
+    const wrongAnswerIndex = selectedIndex;
+    setSelectedAnswerIndex(wrongAnswerIndex);
     setAnswerState("selected");
 
     const currentQuestion = questions[currentQuestionIndex];
@@ -62,8 +63,9 @@ export default function GameContainer({
         setSelectedAnswerIndex(null);
       }
     } else {
-      setAnswerState("wrong");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setAnswerState("wrong-with-correct");
+      setSelectedAnswerIndex(wrongAnswerIndex);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       setGameStatus("lost");
     }
   };
@@ -113,6 +115,7 @@ export default function GameContainer({
               selectedIndex={selectedAnswerIndex}
               answerState={answerState}
               removedAnswers={removedAnswers}
+              correctAnswer={questions[currentQuestionIndex].odp_poprawna}
             />
             <FiftyFiftyButton
               fiftyFiftyCount={fiftyFiftyCount}

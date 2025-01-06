@@ -28,4 +28,9 @@ export type Question = z.infer<typeof QuestionSchema>;
 
 export const QuestionsArraySchema = z.array(QuestionSchema);
 
-export type AnswerState = "default" | "selected" | "correct" | "wrong";
+export type AnswerState =
+  | "default"
+  | "selected"
+  | "correct"
+  | "wrong"
+  | "wrong-with-correct";
