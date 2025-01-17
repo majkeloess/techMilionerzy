@@ -65,6 +65,11 @@ create table pytania
 	odp_d varchar(255),
 	odp_poprawna varchar(255)
 );
+
+w `useQuestions` uzywane jest moje [API](https://api.majkeloess.dev),
+które zaopatrza aplikację w potrzebne pytania z tabeli, która ma schewat wyzej.
+
+
 ```
 
 ## Odpalanie projektu

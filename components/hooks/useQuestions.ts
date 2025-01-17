@@ -9,7 +9,7 @@ export function useQuestions() {
     const fetchAndSetupQuestions = async () => {
       try {
         const response = await fetch(
-          `https://api.majkeloess.dev/techmilionerzy/questions?key=${process.env.NEXT_PUBLIC_API_KEY}`
+          `https://api.majkeloess.dev/techmilionerzy/questions?key=${process.env.NEXT_PUBLIC_MAJKELOESS}`
         );
 
         const data = await response.json();
